@@ -48,7 +48,6 @@ export const CreateUser = async (
     }
   }
 };
-
 export const LoginUser = async (username: string, password: string) => {
   try {
     const user = await db
@@ -91,7 +90,6 @@ export const LoginUser = async (username: string, password: string) => {
     };
   }
 };
-
 export const UpdateApiKey = async (username: string, key: string) => {
   try {
     const result = await db

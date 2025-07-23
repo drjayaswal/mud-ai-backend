@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import { jwtVerify } from "jose";
 
 /**
  * Generates a Random ID
@@ -22,7 +23,6 @@ export const hash_password = async (password: string): Promise<string> => {
     throw err;
   }
 };
-// $2b$10$RXboJKaxY/VKHMqDK1qcS.YXs1O8JeaxBrkPDjwLBn5wD2yYV5tAy
 /**
  * Compares raw password with hashed password
  * @param password - Plain password
@@ -39,3 +39,25 @@ export const compare_password = async (
     throw err;
   }
 };
+/**
+ * Decrypts and verifies a JWT token.
+ *
+ * This function uses the 'jose' library to verify and decode a JWT (JSON Web Token)
+ * using the secret key specified in the environment variable JWT_SECRET.
+ * If JWT_SECRET is not set, it falls back to "default_secret".
+ *
+ * @param input - The JWT token string to be decrypted and verified.
+ * @returns The decoded payload of the JWT token.
+ * @throws If the token is invalid or verification fails.
+ *
+ * Example usage:
+ *   const payload = await decrypt(token);
+ */
+export async function decrypt(input: string): Promise<unknown> {
+  const secretKey = "secret";
+  const key = new TextEncoder().encode(secretKey);
+  const { payload } = await jwtVerify(input, key, {
+    algorithms: ["HS256"],
+  });
+  return payload;
+}

@@ -6,8 +6,8 @@ CREATE TABLE "connect" (
 --> statement-breakpoint
 CREATE TABLE "connections" (
 	"id" bigint PRIMARY KEY NOT NULL,
-	"user_id" bigint,
-	"message" text NOT NULL,
+	"username" text,
+	"prompt" text NOT NULL,
 	"response" text NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now()
 );
@@ -29,4 +29,4 @@ CREATE TABLE "users" (
 	CONSTRAINT "users_username_unique" UNIQUE("username")
 );
 --> statement-breakpoint
-ALTER TABLE "connections" ADD CONSTRAINT "connections_user_id_users_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."users"("id") ON DELETE no action ON UPDATE no action;
+ALTER TABLE "connections" ADD CONSTRAINT "connections_username_users_username_fk" FOREIGN KEY ("username") REFERENCES "public"."users"("username") ON DELETE no action ON UPDATE no action;

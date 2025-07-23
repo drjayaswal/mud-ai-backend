@@ -1,5 +1,5 @@
 {
-  "id": "92acee9d-d0cb-4a5b-bc67-c94dc23df7dd",
+  "id": "6d71880c-8cdf-4b17-9749-5c8098c37db7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -45,14 +45,14 @@
           "primaryKey": true,
           "notNull": true
         },
-        "user_id": {
-          "name": "user_id",
-          "type": "bigint",
+        "username": {
+          "name": "username",
+          "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "message": {
-          "name": "message",
+        "prompt": {
+          "name": "prompt",
           "type": "text",
           "primaryKey": false,
           "notNull": true
@@ -73,15 +73,15 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "connections_user_id_users_id_fk": {
-          "name": "connections_user_id_users_id_fk",
+        "connections_username_users_username_fk": {
+          "name": "connections_username_users_username_fk",
           "tableFrom": "connections",
           "tableTo": "users",
           "columnsFrom": [
-            "user_id"
+            "username"
           ],
           "columnsTo": [
-            "id"
+            "username"
           ],
           "onDelete": "no action",
           "onUpdate": "no action"

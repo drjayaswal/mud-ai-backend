@@ -1,5 +1,5 @@
 import { t } from "elysia";
 
-export const ChatBody = t.Object({
-  message: t.String(),
+export const ConnectionBody = t.Object({
+  prompt: t.String(),
 });

@@ -2,6 +2,7 @@ import { Elysia } from "elysia";
 import "dotenv/config";
 import cors from "@elysiajs/cors";
 import { routes as connectionRoutes } from "./routes/connection.route";
+import { routes as authRoutes } from "./routes/auth.route";
 import { routes as userRoutes } from "./routes/user.route";
 import pino from "pino";
 
@@ -49,8 +50,9 @@ const app = new Elysia()
     })
   )
   .use(securityHeaders())
-  .use(connectionRoutes)
+  .use(authRoutes)
   .use(userRoutes)
+  .use(connectionRoutes)
   .listen(4000);
 
 logger.info(`[SERVER]  :  Server Connected  :  ${new Date().toLocaleString()}`);

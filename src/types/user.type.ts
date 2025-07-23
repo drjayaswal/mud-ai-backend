@@ -25,3 +25,12 @@ export const UserConnectBody = t.Object({
   email: t.String(),
   message: t.String(),
 });
+export interface PayloadInterface {
+  user: {
+    username: string;
+    ucode: string;
+  };
+  expires: string;
+  iat: number;
+  exp: number;
+}
