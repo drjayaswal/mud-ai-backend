@@ -12,6 +12,7 @@ export const routes = new Elysia({ prefix: "/connection" })
   .guard(
     {
       beforeHandle: async ({ cookie, set, store }) => {
+        console.log(cookie);
         if (typeof cookie === "undefined") {
           set.status = 400;
           return {
@@ -20,7 +21,7 @@ export const routes = new Elysia({ prefix: "/connection" })
             message: "Missing cookies",
           };
         }
-
+        console.log(cookie.session);
         if (!cookie.session) {
           set.status = 401;
           return {
@@ -30,6 +31,7 @@ export const routes = new Elysia({ prefix: "/connection" })
           };
         }
 
+        console.log(cookie.session?.value);
         const session_string = cookie.session.value;
         if (!session_string) {
           set.status = 401;
