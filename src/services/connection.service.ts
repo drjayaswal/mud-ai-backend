@@ -6,7 +6,7 @@ import { connection_model } from "../models/connection.model";
 export const CreateConnection = async (username: string, prompt: string) => {
   try {
     const id = await generate_id();
-    const response = "Hello From Mud Ai";
+    const response = `Hello ${username} !`;
 
     await db
       .insert(connection_model)
